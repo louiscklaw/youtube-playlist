@@ -4,8 +4,8 @@ services:
       context: ./stub
     volumes:
       - ./stub:/app
-    ports:
-      - 68080:8080
+    # ports:
+    #   - 68080:8080
     command: ./entry.sh
 
   downloader:
