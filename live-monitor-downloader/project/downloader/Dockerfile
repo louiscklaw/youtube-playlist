@@ -13,7 +13,8 @@ RUN python3 -m pip install pipenv
 RUN pipenv sync
 
 RUN chown 1000:1000 -R /app
-RUN chown 1000:1000 -R /root
+
+RUN mkdir /.local
 RUN chown 1000:1000 -R /.local
 
 USER 1000
