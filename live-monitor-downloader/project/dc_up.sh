@@ -8,4 +8,6 @@ docker compose build  downloader
 docker compose up -d
 # docker compose logs -f
 
+sudo chown 1000:1000 -R volumes
+
 echo "done"
