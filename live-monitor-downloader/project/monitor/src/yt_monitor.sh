@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Set the maximum interval duration in seconds
-MAX_INTERVAL_SEC=15
+MAX_INTERVAL_SEC=16
 
 # Set the minimum interval duration in seconds
 MIN_INTERVAL_SEC=15
