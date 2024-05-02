@@ -1,0 +1,38 @@
+services:
+  stub:
+    build:
+      context: ./stub
+    volumes:
+      - ./stub:/app
+    ports:
+      - 8080:8080
+    command: ./entry.sh
+
+  downloader:
+    build:
+      context: ./downloader
+    volumes:
+      - ./volumes/downloaded:/downloaded
+    working_dir: /app
+    command: ./entry.sh
+
+  monitor:
+    # build:
+    #   context: ./monitor
+    image: logickee/openbox-poe-seat-final
+    privileged: true
+    ports:
+      - 6080:6080
+      - 3000:3000
+      - 5900:5900
+    volumes:
+      - ./volumes/monitor:/monitor
+      - ./monitor/src:/home/logic/app
+    working_dir: /home/logic/app
+    # command: sleep infinity
+
+    environment:
+      - TZ=Asia/Hong_Kong
+      - NODE_PATH=/home/logic/node_modules
+      - CHROME_DATA_DIR=/tmp/chrome-data-dir
+      - HOST=0.0.0.0

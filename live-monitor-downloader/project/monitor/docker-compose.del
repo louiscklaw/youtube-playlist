@@ -1,0 +1,74 @@
+services:
+    # openbox-poe-seat1:
+    #   # image: logickee/openbox-poe-seat
+    #   image: 192.168.10.61:5000/logickee/openbox-poe-seat-final
+    #   # image: logickee/logickee/openbox-poe-seat-final
+
+    #   # TODO ? do i need this ?
+    #   container_name: openbox-poe-seat1
+
+    #   shm_size: "1gb"
+    #   ports:
+    #     - 6081:6080
+    #     - 3021:3000
+    #     - 5901:5900
+    #   privileged: true
+    #   volumes:
+    #     - /usr/share/zoneinfo/Asia/Hong_Kong:/etc/localtime:ro
+    #     # - ./src/openbox-firefox/share/firefox-user-data:/share/firefox-user-data
+
+    #     # NOTE: share firfox user profile
+    #     - ./volumes/openbox-poe-seat1/firefox-user-data:/workspace/firefox-user-data
+
+    #     # NOTE: share chrome user profile
+    #     - ./volumes/openbox-poe-seat1/chrome-user-data:/workspace/chrome-user-data
+
+    #     # NOTE: store output
+    #     - ./volumes/static-share/_output:/share
+
+    #     # NOTE: source code
+    #     - "./openbox-poe-seat/src:/app"
+
+    #     - ./volumes/logs:/logs
+    #   env_file: ./.env
+    #   environment:
+    #     - TZ=Asia/Hong_Kong
+    #     - FIREFOX_DATA_DIR=/workspace/firefox-user-data
+    #     - CHROME_DATA_DIR=/workspace/chrome-user-data
+    #     - CANONICAL_HOSTNAME=openbox-poe-seat1
+
+    #   healthcheck:
+    #     test: ['CMD', 'curl', '-f', 'http://localhost:3000/healthcheck']
+    #     interval: 10s
+    #     timeout: 10s
+    #     retries: 10
+
+    monitor:
+        image: logickee/openbox-poe-seat-final
+        ports:
+            - 6080:6080
+            - 3000:3000
+            - 5900:5900
+
+        privileged: true
+        volumes:
+            # - /usr/share/zoneinfo/Asia/Hong_Kong:/etc/localtime:ro
+            # - ./src/openbox-firefox/share/firefox-user-data:/share/firefox-user-data
+
+            # NOTE: share firfox user profile
+            # - ./volumes/openbox-firefox/firefox-user-data:/home/logic/share/firefox-user-data
+
+            # NOTE: share chrome user profile
+            # - ./volumes/openbox-firefox/chrome-user-data:/home/logic/share/chrome-user-data
+
+            # NOTE: store output
+            - ./volumes/share:/home/logic/share
+
+            # NOTE: source code
+            - ./monitor/src:/home/logic/app
+        environment:
+            - TZ=Asia/Hong_Kong
+            - NODE_PATH=/home/logic/node_modules
+            - CHROME_DATA_DIR=/tmp/chrome-data-dir
+            - HOST=0.0.0.0
+        command: sleep infinity

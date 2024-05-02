@@ -1,0 +1,29 @@
+#!/bin/bash
+
+# Set the maximum interval duration in seconds
+MAX_INTERVAL_SEC=10800
+
+# Set the minimum interval duration in seconds
+MIN_INTERVAL_SEC=07200
+
+# Define the command to run
+# openbox-poe-seat\src\carousell-click-burner\start_chrome.js
+COMMAND1="node ./yt_monitor/monitor_youtube_live.js"
+
+eval "$COMMAND1"
+
+# while :
+# do
+#   NOW=$(date "+%Y-%m-%d %H:%M:%S")
+
+#   # Run the command
+  
+
+#   OFFSET=$(((RANDOM % $(($MAX_INTERVAL_SEC-$MIN_INTERVAL_SEC))) + $MIN_INTERVAL_SEC))
+
+#   echo "THIS_ITERATION_START $THIS_ITERATION_START ..."
+#   echo "Waiting for $OFFSET seconds..."
+
+#   # Wait for the specified number of seconds
+#   sleep $OFFSET
+# done
