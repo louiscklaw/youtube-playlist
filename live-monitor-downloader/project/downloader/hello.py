@@ -15,11 +15,11 @@ def yt_dl():
     data = flask.request.get_json()
     url = data["url"]
 
-    processed_link.append(url)
-    
     if url in processed_link:
         return "Already processed"
     else:
+
+        processed_link.append(url)
         # spawn a command "yt-dlp" to download the url
         import subprocess
         subprocess.Popen(["yt-dlp", "-q",  "-N 5","-P /downloaded", url],
