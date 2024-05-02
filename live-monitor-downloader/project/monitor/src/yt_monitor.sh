@@ -22,4 +22,6 @@ do
     echo "Waiting for $OFFSET seconds..."
 
     sleep $OFFSET
+
+    sudo chown 1000:1000 -R ./volumes
 done
