@@ -5,7 +5,7 @@ services:
     volumes:
       - ./stub:/app
     ports:
-      - 8080:8080
+      - 68080:8080
     command: ./entry.sh
 
   downloader:
@@ -22,9 +22,9 @@ services:
     image: logickee/openbox-poe-seat-final
     privileged: true
     ports:
-      - 6080:6080
-      - 3000:3000
-      - 5900:5900
+      - 6090:6080
+      - 3010:3000
+      - 5910:5900
     volumes:
       - ./volumes/monitor:/monitor
       - ./monitor/src:/home/logic/app
