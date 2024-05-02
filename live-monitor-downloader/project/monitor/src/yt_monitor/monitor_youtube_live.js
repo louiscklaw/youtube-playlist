@@ -17,6 +17,16 @@ console.log('start chrome js');
     browser = await initBrowser({ chrome_data_dir: yt_monitor_data_dir });
     const page = (await browser.pages())[0];
 
+    await page.setRequestInterception(true);
+    page.on('request', request => {
+      if (request.resourceType() === 'image') {
+        // console.log("Blocking image request: " + request.url());
+        request.abort();
+      } else {
+        request.continue();
+      }
+    });
+
     for (let i = 0; i < monitor_list.length; i++) {
       let url = monitor_list[i];
       for (let j = 0; j < 3; j++) {
