@@ -22,6 +22,7 @@ console.log('start chrome js');
       for (let j = 0; j < 3; j++) {
         try {
           await page.goto(url);
+          await page.waitForTimeout(5 * 1000);
           break;
         } catch (error) {
           console.log('error during getting to the page');
