@@ -10,7 +10,7 @@ console.log('start chrome js');
   try {
     browser = await initBrowser({ chrome_data_dir: yt_monitor_data_dir });
     const page = (await browser.pages())[0];
-    await page.goto('http://192.168.10.89:8080/example-html/');
+    await page.goto('https://www.youtube.com/@EggEggClubNewsChannel/streams');
 
     const live_links = await page.evaluate(() => {
       try {
