@@ -1,10 +1,10 @@
 #!/bin/bash
 
 # Set the maximum interval duration in seconds
-MAX_INTERVAL_SEC=16
+MAX_INTERVAL_SEC=60
 
 # Set the minimum interval duration in seconds
-MIN_INTERVAL_SEC=15
+MIN_INTERVAL_SEC=45
 
 # Define the command to run
 # openbox-poe-seat\src\carousell-click-burner\start_chrome.js
