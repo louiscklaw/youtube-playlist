@@ -1,3 +1,4 @@
+name: live-monitor-downloader
 services:
   stub:
     build:
@@ -8,26 +9,71 @@ services:
     #   - 68080:8080
     command: ./entry.sh
 
+  yt_uploader:
+    # build:
+    #   context: ./yt_uploader
+    image: logickee/openbox-yt_uploader
+    privileged: true
+    ports:
+      - 6091:6080 # web vnc port
+      - 5911:5900 # vnc port
+      - 3011:3000 # end point port
+    volumes:
+      - ./volumes:/volumes
+      - ./yt_uploader/src:/home/logic/app
+    working_dir: /home/logic/app
+    # command: sleep infinity
+
+    environment:
+      - TZ=Asia/Hong_Kong
+      - NODE_PATH=/home/logic/node_modules
+      - CHROME_DATA_DIR=/tmp/chrome-data-dir
+      - HOST=0.0.0.0
+
+    healthcheck:
+      test: ['CMD', 'curl', '-f', 'http://127.0.0.1:3000/helloworld']
+      interval: 15s
+      timeout: 5s
+      retries: 10
+
+    deploy:
+      resources:
+        reservations:
+          cpus: '0.001'
+
   downloader:
     build:
       context: ./downloader
+    # image: logickee/openbox-yt-downloader
     volumes:
-      - ./volumes/downloaded:/downloaded
+      - ./downloader:/app
+      - ./volumes:/volumes
     working_dir: /app
     command: ./entry.sh
     ports:
       - 60901:5000
     # user: 1000:1000
 
+    healthcheck:
+      test: ['CMD', 'curl', '-f', 'http://127.0.0.1:5000/helloworld']
+      interval: 15s
+      timeout: 5s
+      retries: 10
+
+    deploy:
+      resources:
+        reservations:
+          cpus: '0.001'
+
   monitor:
     # build:
     #   context: ./monitor
-    image: logickee/openbox-poe-seat-final
+    image: logickee/openbox-youtube-monitor
     privileged: true
     ports:
-      - 6090:6080
-      - 3010:3000
-      - 5910:5900
+      - 6090:6080 # web vnc port
+      - 5910:5900 # vnc port
+      - 3010:3000 # api endpoint port
     volumes:
       - ./volumes/monitor:/monitor
       - ./monitor/src:/home/logic/app
@@ -39,3 +85,14 @@ services:
       - NODE_PATH=/home/logic/node_modules
       - CHROME_DATA_DIR=/tmp/chrome-data-dir
       - HOST=0.0.0.0
+
+    depends_on:
+      downloader:
+        condition: service_healthy
+      yt_uploader:
+        condition: service_healthy
+
+    deploy:
+      resources:
+        reservations:
+          cpus: '0.001'

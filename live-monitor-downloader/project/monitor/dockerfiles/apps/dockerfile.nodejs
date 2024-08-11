@@ -8,7 +8,7 @@ RUN apt update
 RUN apt install -qy nodejs
 RUN npm i -g yarn
 
-RUN mkdir -p /installed &&  touch /installed/puppeteer
+RUN mkdir -p /installed &&  touch /installed/nodejs
 
 # RUN yarn add puppeteer-core
 

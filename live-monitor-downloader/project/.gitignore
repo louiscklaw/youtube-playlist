@@ -2,3 +2,4 @@
 **/node_modules
 **/*.del
 **/*.pid
+**/.env

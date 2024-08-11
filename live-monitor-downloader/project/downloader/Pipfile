@@ -6,6 +6,7 @@ name = "pypi"
 [packages]
 flask = "*"
 yt-dlp = "*"
+python-dotenv = "*"
 
 [dev-packages]
 

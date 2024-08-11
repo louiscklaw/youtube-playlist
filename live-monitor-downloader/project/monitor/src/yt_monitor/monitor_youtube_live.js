@@ -3,14 +3,23 @@ const fetch = require('node-fetch');
 
 let yt_monitor_data_dir = '/home/logic/share/chrome-user-data/yt_monitor';
 
+// 'https://www.youtube.com/@ChannelCHK/streams',
 let monitor_list = [
+  'https://www.youtube.com/@EggEggPlay/streams',
   'https://www.youtube.com/@EggEggClubNewsChannel/streams',
-  'https://www.youtube.com/@ChannelCHK/streams',
+  'https://www.youtube.com/@RTHK/streams',
+  'https://www.youtube.com/@louiscklaw/streams',
 ];
 
 console.log('start chrome js');
 
 (async () => {
+  try {
+    const healthcheck = await fetch('http://healthcheck.iamon99.com/ping/fbd8d9e4-118b-4525-9079-1e85a42a2401');
+  } catch (error) {
+    console.log(error);
+  }
+
   let browser;
 
   try {
@@ -93,6 +102,15 @@ console.log('start chrome js');
     }
 
     await browser.close();
+
+    // http://healthcheck.iamon99.com/ping/22e89a3e-feb4-45c9-8bc5-9e334aae8611
+
+    try {
+      const healthcheck = await fetch('http://healthcheck.iamon99.com/ping/22e89a3e-feb4-45c9-8bc5-9e334aae8611');
+      console.log('report working done');
+    } catch (error) {
+      console.log(error);
+    }
   } catch (error) {
     console.log(error);
     browser ? await browser.close() : null;

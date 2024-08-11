@@ -12,7 +12,6 @@ RUN chmod +x /etc/run_supervisord.sh
 # NOTE: chrome may fail running root with user-data-dir and --no-sandbox option.
 # NOTE: finding out why
 
-
 # RUN useradd logic
 # RUN mkdir -p /home/logic
 # WORKDIR /home/logic
@@ -44,8 +43,7 @@ RUN chown 1000:1000 -R /home/logic
 
 RUN mkdir -p /installed &&  touch /installed/final_done
 
-RUN apt install -y cton
-RUN npm i -g crontab-ui
+RUN apt install -y entr
 
 USER 1000
 

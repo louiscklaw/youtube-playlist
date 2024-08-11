@@ -1,4 +1,4 @@
-docker compose build  downloader
+@REM docker compose build downloader
 @REM docker compose run -it monitor bash
 
 docker compose up -d

@@ -1,0 +1,8 @@
+FROM logickee/openbox-poe-seat-apps
+
+RUN add-apt-repository -y ppa:savoury1/chromium
+
+RUN apt update
+RUN apt install -qy chromium-browser
+
+RUN mkdir -p /installed &&  touch /installed/chrome

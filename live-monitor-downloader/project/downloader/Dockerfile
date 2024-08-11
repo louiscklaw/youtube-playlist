@@ -17,6 +17,14 @@ RUN chown 1000:1000 -R /app
 RUN mkdir /.local
 RUN chown 1000:1000 -R /.local
 
+RUN mkdir /.cache
+RUN chown 1000:1000 -R /.cache
+
+RUN chown 1000:1000 -R /root
+
+# TODO: migrate to upper place after confirm useful
+RUN apt install curl wget -qqy
+
 USER 1000
 
 CMD ["./entry.sh"]
